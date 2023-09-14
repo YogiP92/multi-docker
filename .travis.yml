@@ -5,14 +5,14 @@ services:
 before_install:
   - docker build -t docker_complex/react-test -f ./client/Dockerfile.dev ./client
 
-secript:
-  - docker run docker_complex/react-test npm test --  --coverage
+script:
+  - docker run -e CI=true docker_complex/react-test npm test
 
 after_success:
   - docker build -t docker_complex/multi-client ./client
   - docker build -t docker_complex/multi-nginx ./nginx
   - docker build -t docker_complex/multi-server ./server
-  - docker build -t docker_complex/muti-worker ./worker
+  - docker build -t docker_complex/multi-worker ./worker
   # Login in to the docker CLI
   # Take those images and push to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
