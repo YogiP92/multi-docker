@@ -1,4 +1,5 @@
 sudo: required
+language: generic
 services:
   - docker
 
@@ -18,5 +19,5 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push dockyog/multi-client
   - docker push dockyog/multi-nginx
-  - docker push dockyog/mutli-server
+  - docker push dockyog/multi-server
   - docker push dockyog/multi-worker
